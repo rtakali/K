@@ -473,30 +473,27 @@ function prevTrack(){
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     function updateTime() {
-                        let anniversary = "2024-07-08";
-                        let startDate = new Date(anniversary);
+                        let anniversary = new Date("2024-07-08");
                         let now = new Date();
-        
-                        let years = now.getFullYear() - startDate.getFullYear();
-                        let months = now.getMonth() - startDate.getMonth();
-                        let days = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-        
-                        if (now.getDate() < startDate.getDate()) {
-                            months--;
-                            let prevMonth = new Date(now.getFullYear(), now.getMonth() - 1, startDate.getDate());
-                            days = Math.floor((now - prevMonth) / (1000 * 60 * 60 * 24));
-                        }
-        
-                        if (months < 0) {
-                            years--;
-                            months += 12;
-                        }
-        
+            
+                        // Calculate the difference in milliseconds
+                        let timeDifference = now - anniversary;
+            
+                        // Calculate the difference in days
+                        let daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            
+                        // Calculate years, months, and days
+                        let years = Math.floor(daysDifference / 365);
+                        daysDifference -= years * 365;
+                        let months = Math.floor(daysDifference / 30);
+                        daysDifference -= months * 30;
+            
+                        // Set the values in the HTML
                         document.getElementById("years").textContent = years.toString();
                         document.getElementById("months").textContent = months.toString();
-                        document.getElementById("days").textContent = days.toString();
+                        document.getElementById("days").textContent = daysDifference.toString();
                     }
-        
+            
                     updateTime(); // Initial call to display the time immediately
                     setInterval(updateTime, 1000); // Update every second if you want real-time updates
                 });
