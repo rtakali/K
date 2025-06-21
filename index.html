@@ -450,55 +450,58 @@ function prevTrack(){
                     <img class="w-full" src="https://media.tenor.com/ewJrc9fZeaQAAAAi/prots-masaj.gif" alt="">
                 </div>
 
+            
                 <!-- DATE COUNTER -->
-                <div>
-                    <p class="font-extrabold text-lg" style="text-align: center;">How long We've been together? ♡</p>
-                </div>
-                <div class="flex gap-5" id="myCountdown">
-                    <div class="bg-transparent border-2 border-black rounded-md w-40 h-52 flex justify-center items-center flex-col gap-10">
-                        <h1 id="years" class="text-6xl font-bold">0</h1>
-                        <p class="font-bold text-xl text-red-700">Year</p>
-                    </div>
-                    <div class="bg-transparent border-2 border-black rounded-md w-40 h-52 flex justify-center items-center flex-col gap-10">
-                        <h1 id="months" class="text-6xl font-bold">0</h1>
-                        <p class="font-bold text-xl text-red-700">Months</p>
-                    </div>
-                    <div class="bg-transparent border-2 border-black rounded-md w-40 h-52 flex justify-center items-center flex-col gap-10">
-                        <h1 id="days" class="text-6xl font-bold">0</h1>
-                        <p class="font-bold text-xl text-red-700">Days</p>
-                    </div>
-                </div>
-                <h1 class="text-center font-bold text-base">It's cute lang, that's why I've added this. But We're forever mwehehe</h1>
-            </div>
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    function updateTime() {
-                        let anniversary = new Date("2024-07-08");
-                        let now = new Date();
-            
-                        // Calculate the difference in milliseconds
-                        let timeDifference = now - anniversary;
-            
-                        // Calculate the difference in days
-                        let daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-            
-                        // Calculate years, months, and days
-                        let years = Math.floor(daysDifference / 365);
-                        daysDifference -= years * 365;
-                        let months = Math.floor(daysDifference / 30);
-                        daysDifference -= months * 30;
-            
-                        // Set the values in the HTML
-                        document.getElementById("years").textContent = years.toString();
-                        document.getElementById("months").textContent = months.toString();
-                        document.getElementById("days").textContent = daysDifference.toString();
-                    }
-            
-                    updateTime(); // Initial call to display the time immediately
-                    setInterval(updateTime, 1000); // Update every second if you want real-time updates
-                });
-            </script>
+<div>
+    <p class="font-extrabold text-lg text-center">How long were we together? ♡</p>
+</div>
+<div class="flex gap-5" id="myCountdown">
+    <div class="bg-transparent border-2 border-black rounded-md w-40 h-52 flex justify-center items-center flex-col gap-10">
+        <h1 id="years" class="text-6xl font-bold">0</h1>
+        <p class="font-bold text-xl text-red-700">Year</p>
     </div>
+    <div class="bg-transparent border-2 border-black rounded-md w-40 h-52 flex justify-center items-center flex-col gap-10">
+        <h1 id="months" class="text-6xl font-bold">0</h1>
+        <p class="font-bold text-xl text-red-700">Months</p>
+    </div>
+    <div class="bg-transparent border-2 border-black rounded-md w-40 h-52 flex justify-center items-center flex-col gap-10">
+        <h1 id="days" class="text-6xl font-bold">0</h1>
+        <p class="font-bold text-xl text-red-700">Days</p>
+    </div>
+</div>
+<h1 class="text-center font-bold text-base italic text-gray-600">
+   When I made this, I never imagined I'd have to stop it. But this is what I need.
+</h1>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function calculateDuration(startDate, endDate) {
+            const start = new Date(startDate);
+            const end   = new Date(endDate);
+
+            let years  = end.getFullYear()  - start.getFullYear();
+            let months = end.getMonth()     - start.getMonth();
+            let days   = end.getDate()      - start.getDate();
+
+            if (days < 0) {
+                months -= 1;
+                days += new Date(end.getFullYear(), end.getMonth(), 0).getDate();
+            }
+            if (months < 0) {
+                years -= 1;
+                months += 12;
+            }
+
+            document.getElementById("years").textContent  = years;
+            document.getElementById("months").textContent = months;
+            document.getElementById("days").textContent   = days;
+        }
+
+        // Relationship: July 8, 2024 – May 4, 2025
+        calculateDuration("2024-07-08", "2025-05-04");
+    });
+</script>
+
 
 
 <!-- PLAYLIST -->
